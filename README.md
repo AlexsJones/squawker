@@ -2,7 +2,7 @@
 
 A plug n play notifications system for golang
 
-```
+```go
 	notifierManager := notifier.NewManager()
 
 	notifierManager.AddNotifier(&slack.SlackNotifier{ClientToken: "YOURCLIENTOKEN", Channels: []string{"ACHANNEL"}})
