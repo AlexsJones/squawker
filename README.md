@@ -13,5 +13,7 @@ A plug n play notifications system for golang
     log.Fatal(err)
   }
 
-	notifierManager.Send("THIS IS EVENT YOU ALL NEED TO KNOW ABOUT!")
+	notifierManager.SendFanOut("THIS IS EVENT YOU ALL NEED TO KNOW ABOUT!")
+
+  notifierManager.SendFanIn("Slack","An alert has been sent...")
 ```
