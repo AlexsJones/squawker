@@ -1,6 +1,10 @@
 package notifier
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+	"log"
+)
 
 //Manager ...
 type Manager struct {
@@ -27,7 +31,11 @@ func (s *Manager) AddNotifier(i inotifier) error {
 func (s *Manager) SendFanOut(d ...string) {
 
 	for _, value := range s.Notifiers {
-		value.Notify(d...)
+		if err := value.Notify(d...); err != nil {
+			log.Println(err.Error())
+		} else {
+			log.Println(fmt.Sprintf("Sent from: %s", value.GetName()))
+		}
 	}
 }
 

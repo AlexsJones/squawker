@@ -6,6 +6,8 @@ import (
 	notifier "github.com/AlexsJones/squawker"
 	"github.com/AlexsJones/squawker/services/slack"
 	"github.com/AlexsJones/squawker/services/stackdriver"
+	"github.com/AlexsJones/squawker/services/victorops"
+	vo "github.com/chrissnell/victorops-go"
 )
 
 func main() {
@@ -14,6 +16,10 @@ func main() {
 
 	if err := notifierManager.AddNotifier(&slack.SlackNotifier{ClientToken: "xoxp-TOKENNAME", Channels: []string{"CHANNEL"}}); err != nil {
 		log.Fatal(err)
+	}
+
+	if err := notifierManager.AddNotifier(&victorops.VictorOpsNotivier{APIKey: "RestfulIntegrationKeyxxxx", RoutingKey: "production",
+		EntityID: "XXX", MessageStatus: vo.Warning}); err != nil {
 
 	}
 
