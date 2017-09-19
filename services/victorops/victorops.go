@@ -1,11 +1,11 @@
 package victorops
 
 import (
+	"errors"
+	victorops "github.com/chrissnell/victorops-go"
 	"log"
 	"strings"
 	"time"
-
-	victorops "github.com/chrissnell/victorops-go"
 )
 
 //VictorOpsNotivier ...
@@ -31,6 +31,9 @@ func (v *VictorOpsNotivier) GetName() string {
 
 //Notify ...
 func (v *VictorOpsNotivier) Notify(msg ...string) error {
+	if v.EntityID == "" || v.RoutingKey == "" || v.APIKey == "" {
+		return errors.New("Requires EntityID, RoutingKey and APIKey")
+	}
 	e := &victorops.Event{
 		RoutingKey:        v.RoutingKey,
 		MessageType:       v.MessageStatus,

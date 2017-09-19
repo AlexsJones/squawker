@@ -36,7 +36,9 @@ func (s *StackdriverNotifier) GetName() string {
 
 //Notify the notifier
 func (s *StackdriverNotifier) Notify(msg ...string) error {
-
+	if s.ProjectName == "" || s.LogID == "" {
+		return errors.New("Requires both ProjectName and LogID parameters")
+	}
 	entry := logging.Entry{Payload: strings.Join(msg, " ")}
 	s.logger.Log(entry)
 	s.logger.Flush()

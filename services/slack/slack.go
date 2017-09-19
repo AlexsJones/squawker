@@ -19,7 +19,8 @@ type SlackNotifier struct {
 func (s *SlackNotifier) Create() error {
 
 	s.Client = slack.New(s.ClientToken)
-
+	s.ClientToken = ""
+	s.Channels = []string{}
 	if s.Client == nil {
 		return errors.New("Unable to create slack client")
 	}
@@ -35,6 +36,9 @@ func (s *SlackNotifier) GetName() string {
 
 //Notify the notifier target
 func (s *SlackNotifier) Notify(msg ...string) error {
+	if s.ClientToken == "" {
+		return errors.New("No client token set")
+	}
 	attachments := slack.Attachment{
 		Pretext: "Important Notification",
 		Text:    strings.Join(msg, "\n"),
