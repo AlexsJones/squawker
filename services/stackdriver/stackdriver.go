@@ -1,10 +1,10 @@
 package stackdriver
 
 import (
-	"context"
-	"strings"
-
 	"cloud.google.com/go/logging"
+	"context"
+	"errors"
+	"strings"
 )
 
 //StackdriverNotifier ...
