@@ -47,3 +47,13 @@ func (s *Manager) SendFanIn(notifierName string, d ...string) error {
 	}
 	return errors.New("Unable to find notifier")
 }
+
+// CloseNotifiers will go through all the added Notifiers and call their
+// destroy method and remove them from the NotifyManager
+func (s *Manager) CloseNotifiers() {
+	for key, value := range s.Notifiers {
+		log.Println(fmt.Sprintf("Removing %v from the notifier map", key))
+		value.Destroy()
+		delete(s.Notifiers, key)
+	}
+}

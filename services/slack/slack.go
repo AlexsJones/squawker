@@ -48,7 +48,7 @@ func (s *SlackNotifier) Notify(msg ...string) error {
 	}
 	log.Println("The number of channel being messaged are:", len(s.Channels))
 	for _, channel := range s.Channels {
-		_, _, err := s.Client.PostMessage(channel, "Go Cron Notification", params)
+		_, _, err := s.Client.PostMessage(channel, "Notification from application", params)
 		if err != nil {
 			return err
 		}
@@ -59,5 +59,4 @@ func (s *SlackNotifier) Notify(msg ...string) error {
 
 //Destroy any teardown code here
 func (s *SlackNotifier) Destroy() {
-
 }
