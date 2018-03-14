@@ -1,5 +1,7 @@
 # squawker
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/b1112f79f38545b8a831/maintainability)](https://codeclimate.com/github/AlexsJones/squawker/maintainability)
+
 A plug n play notifications system for golang
 
 
