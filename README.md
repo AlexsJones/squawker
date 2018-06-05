@@ -17,9 +17,9 @@ func main() {
 	})
 
 	var notifiers = []notifier.INotifier{
-		&stackdriver.StackdriverNotifier{ProjectName: "PROJECT", LogID: "Logger0"},
-		&slack.SlackNotifier{ClientToken: "xoxp-TOKENNAME", Channels: []string{"CHANNEL"}},
-		&victorops.VictorOpsNotifier{APIKey: "RestfulIntegrationKeyxxxx", RoutingKey: "production",
+		&stackdriver.Notifier{ProjectName: "PROJECT", LogID: "Logger0"},
+		&slack.Notifier{ClientToken: "xoxp-TOKENNAME", Channels: []string{"CHANNEL"}},
+		&victorops.Notifier{APIKey: "RestfulIntegrationKeyxxxx", RoutingKey: "production",
 			EntityID: "XXX", MessageStatus: vo.Warning},
 	}
 
@@ -54,9 +54,9 @@ func main() {
 	})
 
 	var notifiers = map[string]notifier.INotifier{
-		"Log":     &stackdriver.StackdriverNotifier{ProjectName: "PROJECT", LogID: "Logger0"},
-		"Warning": &slack.SlackNotifier{ClientToken: "xoxp-TOKENNAME", Channels: []string{"CHANNEL"}},
-		"Critical": &victorops.VictorOpsNotifier{APIKey: "RestfulIntegrationKeyxxxx", RoutingKey: "production",
+		"Log":     &stackdriver.Notifier{ProjectName: "PROJECT", LogID: "Logger0"},
+		"Warning": &slack.Notifier{ClientToken: "xoxp-TOKENNAME", Channels: []string{"CHANNEL"}},
+		"Critical": &victorops.Notifier{APIKey: "RestfulIntegrationKeyxxxx", RoutingKey: "production",
 			EntityID: "XXX", MessageStatus: vo.Warning},
 	}
 
