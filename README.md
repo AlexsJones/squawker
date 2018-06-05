@@ -11,7 +11,10 @@ A plug n play notifications system for golang
 ```go
 func main() {
 
-	notifierManager := notifier.NewManager()
+	
+	notifierManager := notifier.NewManager(func(notifier notifier.INotifier, err error) {
+			//Error handling
+	})
 
 	var notifiers = []notifier.INotifier{
 		&stackdriver.StackdriverNotifier{ProjectName: "PROJECT", LogID: "Logger0"},
@@ -46,7 +49,9 @@ import (
 
 func main() {
 
-	notifierManager := notifier.NewManager()
+	notifierManager := notifier.NewManager(func(notifier notifier.INotifier, err error) {
+		//Error handling
+	})
 
 	var notifiers = map[string]notifier.INotifier{
 		"Log":     &stackdriver.StackdriverNotifier{ProjectName: "PROJECT", LogID: "Logger0"},
