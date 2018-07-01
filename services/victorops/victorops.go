@@ -2,6 +2,7 @@ package victorops
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"strings"
 	"time"
@@ -34,7 +35,13 @@ func (v *VictorOpsNotifier) GetName() string {
 }
 
 //Notify ...
-func (v *VictorOpsNotifier) Notify(routingKey string, msg ...string) error {
+func (v *VictorOpsNotifier) Notify(routingKey string, msg ...string) (err error) {
+	// Fix until https://github.com/chrissnell/victorops-go/pull/1 is merged in
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("%v", r)
+		}
+	}()
 	log.Println("Starting VictorOps notify")
 	if v.EntityID == "" || v.RoutingKey == "" || v.APIKey == "" {
 		return errors.New("Requires EntityID, RoutingKey and APIKey")
